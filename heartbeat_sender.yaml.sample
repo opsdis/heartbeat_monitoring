@@ -1,0 +1,4 @@
+redis_server: '10.192.124.1'
+host: 'my-vpn-peer'
+channel: 'heartbeats'
+heartbeat_interval: 10
