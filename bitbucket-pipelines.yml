@@ -7,9 +7,8 @@ pipelines:
         caches:
           - pip
         script: # Test
-          - apt-get update && apt-get -y install libgirepository1.0-dev
+          - apt-get update && apt-get -y install libgirepository1.0-dev redis-server
           - pip install -r requirements.txt
-          - apt-get update && apt-get -y install redis-server
           - nohup redis-server &
           - bash tests/fake_pipe_reader &
           - ln -s tests/heartbeat_listener.yaml heartbeat_listener.yaml
