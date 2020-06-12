@@ -1,0 +1,17 @@
+#!/bin/bash
+mkdir /opt/
+mkdir /opt/monitor/
+mkdir /opt/monitor/var/
+mkdir /opt/monitor/var/rw/
+mkfifo /opt/monitor/var/rw/nagios.cmd
+i=0
+max=5
+while true; do 
+cat /opt/monitor/var/rw/nagios.cmd; 
+i=$(expr $i + 1)
+if [ $i -eq $max ]; then
+ echo Test completed
+ echo '0' > /tmp/received5
+ exit 0
+fi
+done
