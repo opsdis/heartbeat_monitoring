@@ -20,6 +20,6 @@ pipelines:
           - ln -s tests/heartbeat_sender.yaml heartbeat_sender.yaml
           - python3 heartbeat_sender.py &
           - python3 heartbeat_listener.py &
-          - sleep 30s
+          - sleep 60s
           - pkill redis-server
           - ls -l /tmp/received5
