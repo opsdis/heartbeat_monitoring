@@ -1,0 +1,24 @@
+# This is a sample build configuration for Python.
+# Check our guides at https://confluence.atlassian.com/x/x4UWN for more examples.
+# Only use spaces to indent your .yml configuration.
+# -----
+# You can specify a custom docker image from Docker Hub as your build environment.
+image: python:3.7.3
+
+pipelines:
+  default:
+    - step:
+        caches:
+          - pip
+        script: # Test
+          - pip install -r requirements.txt
+          - apt-get update && apt-get -y install redis-server
+          - nohup redis-server &
+          - bash tests/fake_pipe_reader &
+          - ln -s tests/heartbeat_listener.yaml heartbeat_listener.yaml
+          - ln -s tests/heartbeat_sender.yaml heartbeat_sender.yaml
+          - python3 heartbeat_sender.py &
+          - python3 heartbeat_listener.py &
+          - sleep 30s
+          - pkill redis-server
+          - ls -l /tmp/received5
