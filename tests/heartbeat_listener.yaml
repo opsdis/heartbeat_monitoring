@@ -1,0 +1,9 @@
+continuous_passive_checks: 1
+nagios_rw_file: '/opt/monitor/var/rw/nagios.cmd'
+redis_server: '127.0.0.1'
+heartbeat_host: 'my-vpn-peer'
+heartbeat_service: 'Health'
+channel: 'heartbeats'
+heartbeat_key: 'heartbeats'
+time_to_live: 40
+exception_sleep_time: 10
