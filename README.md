@@ -18,3 +18,4 @@
   - Customize heartbeat_sender.yaml and place on remote server
   - Run sender in the background on the remote server (supervisor?): `python3 heartbeat_sender.py`
   - Run listener in the background on the local server (supervisor?): `python3 heartbeat_listener.py`
+  - Add a service with passive checks in Nagios and make sure to have that match your `heartbeat_listener.yaml` configuration `heartbeat_host` and `heartbeat_service`
